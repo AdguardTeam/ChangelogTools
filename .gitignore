@@ -1,0 +1,14 @@
+*.log
+.DS_Store
+.eslintcache
+.vscode
+coverage
+dist
+node_modules
+.pnpm-store/
+
+# npmjs token
+.npmrc
+
+# Release file for npm.
+*.tgz

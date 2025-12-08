@@ -1,0 +1,48 @@
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+import commonjs from '@rollup/plugin-commonjs';
+import json from '@rollup/plugin-json';
+import resolve from '@rollup/plugin-node-resolve';
+import replace from '@rollup/plugin-replace';
+import typescript from '@rollup/plugin-typescript';
+import { type RollupOptions } from 'rollup';
+import externals from 'rollup-plugin-node-externals';
+
+// eslint-disable-next-line @typescript-eslint/naming-convention, no-underscore-dangle
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+const distDirLocation = path.join(__dirname, 'dist');
+
+const buildConfig: RollupOptions = {
+    input: [
+        path.join(__dirname, 'src/lib/index.ts'),
+        path.join(__dirname, 'src/cli/bin.ts'),
+    ],
+    output: {
+        dir: distDirLocation,
+        format: 'esm',
+        sourcemap: false,
+        preserveModules: true,
+        preserveModulesRoot: 'src',
+    },
+    plugins: [
+        json({ preferConst: true }),
+        commonjs({ sourceMap: false }),
+        typescript({
+            tsconfig: path.resolve(__dirname, 'tsconfig.build.json'),
+            // fail on type errors
+            noEmitOnError: true,
+        }),
+        resolve({ preferBuiltins: false }),
+        externals(),
+        replace({
+            preventAssignment: true,
+            values: {
+                __IS_TEST__: 'false',
+            },
+        }),
+    ],
+};
+
+export default buildConfig;

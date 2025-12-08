@@ -1,0 +1,101 @@
+---
+version: 2
+plan:
+  project-key: AJL
+  key: CHANGELOGTOOLSBUILD
+  name: ChangelogTools - build release
+variables:
+  dockerNode: adguard/node-ssh:22.17--0
+
+stages:
+  - Build:
+      manual: false
+      final: false
+      jobs:
+        - Build
+
+Build:
+  key: BUILD
+  other:
+    clean-working-dir: true
+  docker:
+    image: ${bamboo.dockerNode}
+    volumes:
+      ${system.PNPM_DIR}: "${bamboo.cachePnpm}"
+  tasks:
+    - checkout:
+        force-clean-build: true
+    - script:
+        interpreter: SHELL
+        scripts:
+          - |-
+            set -e
+            set -x
+
+            # Fix mixed logs
+            exec 2>&1
+
+            ls -laht
+
+            # Set cache directory
+            pnpm config set store-dir ${bamboo.cachePnpm}
+
+            # Install dependencies
+            pnpm install
+
+            # Run checks
+            pnpm check-types
+            pnpm lint
+            pnpm test
+
+            # Run build
+            pnpm build
+
+            # Create build.txt file with version number. This is needed for Bamboo variable injection
+            npx tsx tasks/build-txt.ts
+
+            # Pack build into tarball
+            pnpm pack --out changelog-tools.tgz
+
+            ls -laht
+    - inject-variables:
+        file: dist/build.txt
+        scope: RESULT
+        namespace: inject
+    - any-task:
+        plugin-key: com.atlassian.bamboo.plugins.vcs:task.vcs.tagging
+        configuration:
+          selectedRepository: defaultRepository
+          tagName: v${bamboo.inject.version}
+  final-tasks:
+    - script:
+        interpreter: SHELL
+        scripts:
+          - "./bamboo-specs/scripts/cleanup.sh changelog-tools.tgz"
+  artifacts:
+    - name: changelog-tools.tgz
+      pattern: changelog-tools.tgz
+      shared: true
+      required: true
+  requirements:
+    - adg-docker: true
+
+triggers: []
+
+branches:
+  create: manually
+  delete: never
+  link-to-jira: true
+
+notifications:
+  - events:
+      - plan-status-changed
+    recipients:
+      - webhook:
+          name: Build webhook
+          url: http://prod.jirahub.service.eu.consul/v1/webhook/bamboo
+
+labels: []
+
+other:
+  concurrent-build-plugin: system-default
