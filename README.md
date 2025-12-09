@@ -1,5 +1,13 @@
 # Changelog Tools
 
+<!-- markdownlint-disable -->
+<p align="center">
+    <a href="https://www.npmjs.com/package/@adguard/changelog-tools"><img src="https://img.shields.io/npm/v/@adguard/changelog-tools" alt="NPM version" /></a>
+    <a href="https://www.npmjs.com/package/@adguard/changelog-tools"><img src="https://img.shields.io/npm/dm/@adguard/changelog-tools" alt="NPM Downloads" /></a>
+    <a href="https://github.com/AdguardTeam/ChangelogTools/blob/master/LICENSE"><img src="https://img.shields.io/npm/l/@adguard/changelog-tools" alt="License" /></a>
+</p>
+<!-- markdownlint-restore -->
+
 Tools for working with changelogs in [Keep a Changelog](https://keepachangelog.com/) format.
 
 > **⚠️ Development Status:** This library is currently under active development and provides
