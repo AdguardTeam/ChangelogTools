@@ -52,7 +52,7 @@ Build:
             pnpm build
 
             # Create build.txt file with version number. This is needed for Bamboo variable injection
-            npx tsx tasks/build-txt.ts
+            npx tsx scripts/build-txt.ts
 
             # Pack build into tarball
             pnpm pack --out changelog-tools.tgz
