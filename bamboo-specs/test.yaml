@@ -4,8 +4,6 @@ plan:
   project-key: AJL
   key: CHANGELOGTOOLSTEST
   name: ChangelogTools - tests
-variables:
-  dockerNode: adguard/node-ssh:22.22--0
 
 stages:
   - Build:
@@ -16,10 +14,6 @@ stages:
 
 Build:
   key: BUILD
-  docker:
-    image: '${bamboo.dockerNode}'
-    volumes:
-      ${system.PNPM_DIR}: "${bamboo.cachePnpm}"
   tasks:
     - checkout:
         force-clean-build: true
@@ -27,32 +21,25 @@ Build:
         interpreter: SHELL
         scripts:
           - |-
-            set -e
-            set -x
+            set -ex
 
             # Fix mixed logs
             exec 2>&1
 
-            ls -laht
+            export DOCKER_BUILDKIT=1
 
-            # Set cache directory
-            pnpm config set store-dir ${bamboo.cachePnpm}
-
-            # Install dependencies
-            pnpm install
-
-            # Run checks
-            pnpm check-types
-            pnpm lint
-            pnpm test
-
-            # Build should be successful
-            pnpm build
+            docker build \
+              --file Dockerfile \
+              --progress plain \
+              --build-arg BUILD_RUN_ID=${bamboo.buildNumber} \
+              --target test-output \
+              --output type=local,dest=output \
+              .
   final-tasks:
     - script:
         interpreter: SHELL
         scripts:
-          - "./bamboo-specs/scripts/cleanup.sh changelog-tools.tgz"
+          - "./bamboo-specs/scripts/cleanup.sh"
   requirements:
     - extension: 'true'
 
