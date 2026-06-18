@@ -53,6 +53,11 @@ git clone git@github.com:AdGuardSoftwareLimited/ext-changelog-tools.git
 cd ext-changelog-tools
 ```
 
+> **Note:** If you only need to use or extend the library, you can
+> clone the
+> [public mirror](https://github.com/AdguardTeam/ChangelogTools)
+> instead.
+
 ### Install Dependencies
 
 ```bash

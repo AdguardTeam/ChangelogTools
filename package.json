@@ -25,7 +25,6 @@
   },
   "files": [
     "dist/**",
-    "!dist/build.txt",
     "README.md",
     "LICENSE",
     "CHANGELOG.md"
