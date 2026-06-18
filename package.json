@@ -1,6 +1,5 @@
 {
   "name": "@adguard/changelog-tools",
-  "version": "0.0.1",
   "description": "Tools for working with changelogs",
   "author": "AdGuard Software Ltd.",
   "license": "MIT",

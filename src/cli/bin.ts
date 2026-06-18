@@ -12,9 +12,13 @@ import remarkParse from 'remark-parse';
 import remarkStringify from 'remark-stringify';
 import { unified } from 'unified';
 
-import { version as packageVersion } from '../../package.json';
+import packageJson from '../../package.json';
 import { extractRelease } from '../lib/extractor.js';
 import { serializationOptions } from '../lib/types.js';
+
+// Version is injected at release time (see publish-release.yml);
+// falls back to '0.0.0' in development.
+const packageVersion = (packageJson as unknown as { version?: string }).version ?? '0.0.0';
 
 /**
  * Find CHANGELOG.md file in the current working directory (case insensitive).

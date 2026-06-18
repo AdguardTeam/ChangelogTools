@@ -53,7 +53,7 @@ COPY --from=test /out/ /
 # ============================================================================
 # Stage: build
 # Runs full pipeline: type-check, lint, tests, build, pack.
-# Produces changelog-tools.tgz and build.txt as artifacts.
+# Produces changelog-tools.tgz as the npm publish artifact.
 # ============================================================================
 FROM source AS build
 
@@ -66,10 +66,8 @@ RUN --mount=type=cache,target=/pnpm-store,id=changelog-tools-pnpm \
     pnpm lint && \
     pnpm test && \
     pnpm build && \
-    npx tsx scripts/build-txt.ts && \
     pnpm pack --out changelog-tools.tgz && \
-    mv changelog-tools.tgz /out/artifacts/ && \
-    cp dist/build.txt /out/artifacts/
+    mv changelog-tools.tgz /out/artifacts/
 
 FROM scratch AS build-output
-COPY --from=build /out/ /
+COPY --from=build /out/artifacts/ /
