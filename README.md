@@ -76,8 +76,8 @@ import remarkInlineLinks from 'remark-inline-links';
 const output = await unified()
     .use(remarkParse)
     .use(remarkInlineLinks)
-    .use(extractRelease, '1.0.0', { 
-        fallback: 'No release notes found' 
+    .use(extractRelease, '1.0.0', {
+        fallback: 'No release notes found'
     })
     .use(remarkStringify, { bullet: '-' })
     .process(await readFile('CHANGELOG.md'));

@@ -8,14 +8,14 @@
 - [Build And Test Commands](#build-and-test-commands)
 - [Contribution Instructions](#contribution-instructions)
 - [Code Guidelines](#code-guidelines)
-  - [System Design](#system-design)
-  - [Architecture](#architecture)
-  - [Code Quality](#code-quality)
-  - [Testing](#testing)
-  - [Dependency Management](#dependency-management)
-  - [Configuration & Documentation](#configuration--documentation)
-  - [Releases & CI/CD](#releases--cicd)
-  - [Markdown Formatting](#markdown-formatting)
+    - [System Design](#system-design)
+    - [Architecture](#architecture)
+    - [Code Quality](#code-quality)
+    - [Testing](#testing)
+    - [Dependency Management](#dependency-management)
+    - [Configuration & Documentation](#configuration--documentation)
+    - [Releases & CI/CD](#releases--cicd)
+    - [Markdown Formatting](#markdown-formatting)
 
 ## Project Overview
 
@@ -36,7 +36,7 @@ repository `AdguardTeam/ChangelogTools`.
 ## Technical Context
 
 | Category | Detail |
-|---|---|
+| --- | --- |
 | **Language / Version** | TypeScript ~5.8 (ES module, `"type": "module"`) |
 | **Runtime** | Node.js >= 20 |
 | **Package Manager** | pnpm 10.x |
@@ -45,7 +45,7 @@ repository `AdguardTeam/ChangelogTools`.
 | **Linter** | ESLint 8 (airbnb-base + airbnb-typescript, import, jsdoc, n, boundaries) |
 | **Markdown Linting** | markdownlint-cli2 |
 | **Type Checking** | `tsc` |
-| **Primary Dependencies** | `commander`, `escape-string-regexp`, `remark-inline-links`, `remark-parse`, `remark-stringify`, `unified` |
+| **Primary Dependencies** | `commander`, `remark-parse`, `remark-stringify`, `unified` |
 | **Storage** | N/A |
 | **Target Platform** | Node.js (library + CLI) |
 | **Project Type** | Library / Package + CLI |
@@ -88,7 +88,7 @@ repository `AdguardTeam/ChangelogTools`.
 ## Build And Test Commands
 
 | Command | Description |
-|---|---|
+| --- | --- |
 | `pnpm build` | Build ESM + type declarations via Rollup |
 | `pnpm test` | Run vitest test suite |
 | `pnpm coverage` | Run vitest with coverage |
