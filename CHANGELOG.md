@@ -21,11 +21,14 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 
 ### Security
 
+## [0.0.2] - 2026-06-19
+
 ## [0.0.1] - 2025-12-09
 
 ### Added
 
 - Initial release.
 
-[Unreleased]: https://github.com/AdguardTeam/ChangelogTools/compare/v0.0.1...HEAD
+[Unreleased]: https://github.com/AdguardTeam/ChangelogTools/compare/v0.0.2...HEAD
+[0.0.2]: https://github.com/AdguardTeam/ChangelogTools/compare/v0.0.1...v0.0.2
 [0.0.1]: https://github.com/AdguardTeam/ChangelogTools/releases/tag/v0.0.1
