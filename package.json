@@ -6,7 +6,7 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AdguardTeam/ChangelogTools.git"
+    "url": "git+https://github.com/AdGuardSoftwareLimited/ext-changelog-tools.git"
   },
   "bugs": {
     "url": "https://github.com/AdguardTeam/ChangelogTools/issues"
@@ -25,7 +25,9 @@
   },
   "files": [
     "dist/**",
-    "!dist/build.txt"
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
   ],
   "engines": {
     "node": ">=20"

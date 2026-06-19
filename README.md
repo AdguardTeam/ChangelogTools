@@ -10,6 +10,11 @@
 
 Tools for working with changelogs in [Keep a Changelog](https://keepachangelog.com/) format.
 
+> **Note:** This package is developed in
+> [AdGuardSoftwareLimited/ext-changelog-tools](https://github.com/AdGuardSoftwareLimited/ext-changelog-tools).
+> The [AdguardTeam/ChangelogTools](https://github.com/AdguardTeam/ChangelogTools)
+> repository is a public mirror.
+
 > **⚠️ Development Status:** This library is currently under active development and provides
 > limited functionality. We plan to extend it with additional features as needed.
 >
@@ -71,8 +76,8 @@ import remarkInlineLinks from 'remark-inline-links';
 const output = await unified()
     .use(remarkParse)
     .use(remarkInlineLinks)
-    .use(extractRelease, '1.0.0', { 
-        fallback: 'No release notes found' 
+    .use(extractRelease, '1.0.0', {
+        fallback: 'No release notes found'
     })
     .use(remarkStringify, { bullet: '-' })
     .process(await readFile('CHANGELOG.md'));
@@ -125,6 +130,13 @@ pnpm build
 # Lint
 pnpm lint
 ```
+
+## Documentation
+
+- [Development](DEVELOPMENT.md)
+- [Deployment](DEPLOYMENT.md)
+- [Changelog](./CHANGELOG.md)
+- [LLM agent rules](AGENTS.md)
 
 ## License
 
