@@ -21,6 +21,8 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 
 ### Security
 
+## [0.0.5] - 2026-07-22
+
 ## [0.0.4] - 2026-07-10
 
 ## [0.0.3] - 2026-06-29
@@ -33,7 +35,8 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 
 - Initial release.
 
-[Unreleased]: https://github.com/AdguardTeam/ChangelogTools/compare/v0.0.4...HEAD
+[Unreleased]: https://github.com/AdguardTeam/ChangelogTools/compare/v0.0.5...HEAD
+[0.0.5]: https://github.com/AdguardTeam/ChangelogTools/compare/v0.0.4...v0.0.5
 [0.0.4]: https://github.com/AdguardTeam/ChangelogTools/compare/v0.0.3...v0.0.4
 [0.0.3]: https://github.com/AdguardTeam/ChangelogTools/compare/v0.0.2...v0.0.3
 [0.0.2]: https://github.com/AdguardTeam/ChangelogTools/compare/v0.0.1...v0.0.2
